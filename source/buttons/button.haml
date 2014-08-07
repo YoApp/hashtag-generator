@@ -1,0 +1,82 @@
+---
+layout: false
+---
+
+!!! 5
+%html
+  %head
+    %meta{charset: 'UTF-8'}
+    %title Yo Counter Button
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Montserrat:700,400'
+    :scss
+      $yo-theme-color: #9B59B6;
+      * {
+        background: #ffffff;
+        border-radius: 2px;
+        box-sizing: border-box;
+        color: darken($yo-theme-color, 5%);
+        font-family: 'Montserrat', arial, sans-serif;
+        font-size: 16px;
+        line-height: 1;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      #wrapper {
+        border: 1px solid $yo-theme-color;
+        height: 20px;
+        padding: 2px;
+      }
+      #icon {
+        background: $yo-theme-color;
+        border: 1px solid darken($yo-theme-color, 5%);
+        float: left;
+        height: 14px;
+        width: 14px;
+      }
+      #content {
+        margin-left: 18px;
+        text-align: center;
+
+        #hashtag::before {
+          content: '#';
+        }
+        #count::before {
+          content: ' x';
+        }
+        #count {
+          display: none;
+        }
+      }
+    :javascript
+      // get hashtag by query string
+      var hashtag = new RegExp('h=([A-Z]+)').exec(window.location.href)[1];
+
+      // shortcut for document.getElementById
+      $ = function(id){
+        return(document.getElementById(id.substring(0, 1) === '#' ? id.substring(1) : id));
+      };
+
+      _callback = function(data){
+        $('#count').innerHTML = data.result;
+        $('#count').style.display = 'inline';
+      };
+
+      // initialize
+      window.onload = function(){
+        $('#hashtag').innerHTML = hashtag;
+        $('#link').setAttribute('href', 'http://justyo.co/h/' + hashtag);
+        var script = document.createElement('script');
+        script.setAttribute('type', 'text/javascript');
+        script.setAttribute('src', 'http://api.justyo.co/yo_count/?hashtag=' + hashtag + '&jsonp=_callback');
+        (document.head || document.getElementsByTagName('head')[0]).appendChild(script);
+      }
+  %body
+    %a#link{target: '_blank'}
+      #wrapper
+        #icon
+        #content
+          %span#hashtag
+          %span#count
