@@ -52,15 +52,23 @@ layout: false
       }
     :javascript
       // get hashtag by query string
-      var hashtag = new RegExp('h=([A-Z]+)').exec(window.location.href)[1];
+      var hashtag = new RegExp('h=([A-Z_-]+)').exec(window.location.href)[1];
 
       // shortcut for document.getElementById
       $ = function(id){
         return(document.getElementById(id.substring(0, 1) === '#' ? id.substring(1) : id));
       };
 
+      // embed result from JSONP
       _callback = function(data){
-        $('#count').innerHTML = data.result;
+        var count = data.result;
+        if(count >= 9950){
+          count = Math.round(count / 1000) + 'K';
+        }
+        else if(count >= 1000){
+          count = (Math.round(count / 100) / 10) + 'K';
+        }
+        $('#count').innerHTML = count;
         $('#count').style.display = 'inline';
       };
 
