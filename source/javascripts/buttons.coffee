@@ -1,7 +1,13 @@
+# Buttons.coffee
+# Consider multiple YoCounter Buttons to be embedded in a single web page!
+# Put the identical id on each <script> and <link> tags that are loaded dynamically!
+
 # Constants
 COUNTER_CLASS_NAME = 'yo-counter'
+CLASS_NAME_PREFIX = '__yo-counter-'
 HASHTAG_ATTR_NAME = 'data-hashtag'
 STYLESHEET_ID = '__yo-counter-css'
+FONT_STYLESHEET_ID = '__yo-counter-font'
 
 @__yo_counter =
   # jQuery-like selector
@@ -22,28 +28,67 @@ STYLESHEET_ID = '__yo-counter-css'
   format_number: (num) ->
     if !num || isNaN(num)
       '?'
-    else if num >= 9950
-      Math.round(count / 1000) + 'K'
-    else if num >= 1000
-      (Math.round(count / 100) / 10) + 'K'
     else
-      num
+      String(num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+
+  # Appends the specific Element to head
+  # Does nothing if the Element with the specific id already exists
+  append_to_head: (element) ->
+    id = element.getAttribute('id')
+    unless (id && @$('#' + id))
+      (document.head || document.getElementsByTagName('head')[0]).appendChild(element)
 
   # Includes specific Javascript
-  include_js: ->
-    alert('HELLO')
+  include_js: (src, id = undefined) ->
+    script = document.createElement('script')
+    script.setAttribute('type', 'text/javascript')
+    script.setAttribute('src', src)
+    script.setAttribute('id', id) if id
+    @append_to_head(script)
 
+  # Includes specific Stylesheet
+  link_css: (href, id = undefined) ->
+    link = document.createElement('link')
+    link.setAttribute('type', 'text/css')
+    link.setAttribute('rel', 'stylesheet')
+    link.setAttribute('href', href)
+    link.setAttribute('id', id) if id
+    @append_to_head(link)
+
+  # Includes JSONP API
+  include_count_js: (hashtag) ->
+    @include_js('http://api.justyo.co/yo_count/?hashtag=' + hashtag + '&jsonp=__yo_counter.callback', '__yo-counter-js-' + hashtag)
+
+  # Treats JSONP API return and renders counter to DOM
   callback: (data) ->
     hashtag = data.result.hashtag
     if hashtag
       for _ in @$by_hashtag(hashtag)
-        _.innerHTML = data.result.yoCount
+        count = _.getElementsByClassName("#{CLASS_NAME_PREFIX}count")[0]
+        count.innerHTML = @format_number(data.result.yoCount)
+        count.style.display = 'inline'
 
   init: ->
-    script = document.createElement('script')
-    script.setAttribute('type', 'text/javascript')
-    script.setAttribute('src', 'http://api.justyo.co/yo_count/?hashtag=' + 'ILOVECOOKIES' + '&jsonp=__yo_counter.callback')
-    (document.head || document.getElementsByTagName('head')[0]).appendChild(script)
+    # Includes CSS
+    @link_css('https://fonts.googleapis.com/css?family=Montserrat:700,400', FONT_STYLESHEET_ID)
+    @link_css('/stylesheets/buttons.css', STYLESHEET_ID) # TODO fix link for production!
 
-window.onload = ->
-  @__yo_counter.init()
+    for _ in @$('.' + COUNTER_CLASS_NAME)
+      # Gets a hashtag
+      hashtag = _.getAttribute(HASHTAG_ATTR_NAME)
+
+      # Includes JSONP API
+      @include_count_js(hashtag)
+
+      # Fixes design
+      _.innerHTML = """
+        <div class="#{CLASS_NAME_PREFIX}wrapper">
+          <div class="#{CLASS_NAME_PREFIX}icon"></div>
+          <div class="#{CLASS_NAME_PREFIX}content">
+            <span class="#{CLASS_NAME_PREFIX}hashtag">#{hashtag}</span>
+            <span class="#{CLASS_NAME_PREFIX}count"></span>
+          </div>
+        </div>
+      """
+
+@__yo_counter.init()

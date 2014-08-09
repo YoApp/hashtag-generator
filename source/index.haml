@@ -2,5 +2,29 @@
 title: YoCounter
 ---
 
-%h2 Generator
-%p Working Now
+%h1 YoCounter
+%p Generate YoCounter buttons for your own websites!
+%form#generator-form
+  %h2 Hashtag
+  %p YoCounter buttons have a hashtag. Please enter the hashtag you want to count.
+  .form-group
+    %input#hashtag-input.hashtag.form-control{type: 'text', placeholder: 'HASHTAG'}
+  #error
+  #slider
+    %h2 Codes
+    %p There are 2 codes to paste on your website!
+    %h3 Where you like
+    %p Paste HTML code below where you want to embed YoCounter.
+    %p
+      %textarea.form-control#yo-counter-a-textarea
+    %h3 Before &lt;/body&gt; tag
+    %p Paste HTML code below before &lt;/body&gt; tag. Even if you embed multiple YoCounters on your website, paste this code once.
+    %p
+      %textarea.form-control#yo-counter-script-textarea
+        :escaped
+          <script type="text/javascript" src="//yocounter.justyo.co/api/1/buttons.js"></script>
+%h2 If you like ...
+%p If you like YoCounter, let us know by sending Yo to #ILOVEYOCOUNTER.
+%p
+  <a href="http://justyo.co/h/ILOVEYOCOUNTER" class="yo-counter" data-hashtag="ILOVEYOCOUNTER">#ILOVEYOCOUNTER</a>
+= javascript_include_tag 'buttons'

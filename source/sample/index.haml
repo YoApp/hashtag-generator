@@ -1,0 +1,30 @@
+---
+layout: false
+---
+
+!!! 5
+%html
+  %head
+    %meta{charst: 'utf-8'}
+    %meta{name: 'viewport', content: 'initial-scale=1.0,user-scalable=no'}
+    %title YoCounter Sample
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+    = javascript_include_tag '//code.jquery.com/jquery-1.11.1.min.js'
+    = javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
+  %body
+    .container
+      %h1 Samples with Bootstrap
+      %h2 Simple sample
+      %p
+        <a href="http://justyo.co/h/ILOVECOOKIES" class="yo-counter" data-hashtag="ILOVECOOKIES">#ILOVECOOKIES</a>
+      %h2 Multiple buttons with the same hashtag
+      %p
+        <a href="http://justyo.co/h/ILOVEYO" class="yo-counter" data-hashtag="ILOVEYO">#ILOVEYO</a>
+        <a href="http://justyo.co/h/ILOVEYO" class="yo-counter" data-hashtag="ILOVEYO">#ILOVEYO</a>
+      %h2 With Tweet buttons
+      %p
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="youcune">Tweet</a>
+        <a href="http://justyo.co/h/ILOVETWITTER" class="yo-counter" data-hashtag="ILOVETWITTER">#ILOVETWITTER</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="youcune">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      = javascript_include_tag 'buttons'

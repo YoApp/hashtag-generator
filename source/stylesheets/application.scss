@@ -1,0 +1,69 @@
+// -------------------------------------------------------------------
+// Variables
+// -------------------------------------------------------------------
+// Theme Colors
+$yo-theme-color: darken(#9B59B6, 15%);
+$body-bg: $yo-theme-color;
+$text-color: #fff;
+$link-color: #fff;
+
+// Fonts
+$font-family-sans-serif: 'Montserrat', arial, sans-serif;
+$font-size-base: 16px;
+$font-size-h1: floor((14px * 2.6));
+$font-size-h2: floor((14px * 2.15));
+$font-size-h3: ceil((14px * 1.5));
+
+// Buttons
+$btn-default-color: #fff;
+$btn-default-bg: $yo-theme-color;
+$btn-default-border: #fff;
+
+// -------------------------------------------------------------------
+// Import Frameworks
+// -------------------------------------------------------------------
+@import 'bootstrap-custom';
+@import 'font-awesome';
+
+// -------------------------------------------------------------------
+// Override Bootstrap styles
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+// Core styles
+// -------------------------------------------------------------------
+h1, h1 + p {
+  text-align: center;
+}
+a {
+  text-decoration: underline;
+}
+a.btn {
+  text-decoration: none;
+}
+.input-group {
+  .form-control {
+    border-radius: 0;
+  }
+  .form-control:first-child {
+    border-top-left-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
+  }
+  .form-control:last-child {
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+  }
+}
+input.hashtag {
+  text-transform: uppercase;
+}
+#slider {
+  display: none;
+}
+#error {
+  display: none;
+}
+#error::before {
+  content: $fa-var-times-circle' ';
+  font-family: FontAwesome;
+}

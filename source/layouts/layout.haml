@@ -3,6 +3,9 @@
   %head
     %meta{charset: 'utf-8'}
     %meta{name: 'viewport', content: 'initial-scale=1.0,user-scalable=no'}
-    %title Yo Admin
+    %title Yo Counter
+    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Montserrat:700,400'
+    = javascript_include_tag 'https://code.jquery.com/jquery-2.1.1.min.js', 'application'
   %body
-    = yield
+    .container
+      = yield
