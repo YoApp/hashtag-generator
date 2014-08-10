@@ -84,18 +84,19 @@ FONT_STYLESHEET_ID = '__yo-counter-font'
       # Gets a hashtag
       hashtag = _.getAttribute(HASHTAG_ATTR_NAME)
 
-      # Includes JSONP API
-      @include_count_js(hashtag)
+      if hashtag
+        # Includes JSONP API
+        @include_count_js(hashtag)
 
-      # Fixes design
-      _.innerHTML = """
-        <div class="#{CLASS_NAME_PREFIX}wrapper">
-          <div class="#{CLASS_NAME_PREFIX}icon"></div>
-          <div class="#{CLASS_NAME_PREFIX}content">
-            <span class="#{CLASS_NAME_PREFIX}hashtag">#{hashtag}</span>
-            <span class="#{CLASS_NAME_PREFIX}count"></span>
+        # Fixes design
+        _.innerHTML = """
+          <div class="#{CLASS_NAME_PREFIX}wrapper">
+            <div class="#{CLASS_NAME_PREFIX}icon"></div>
+            <div class="#{CLASS_NAME_PREFIX}content">
+              <span class="#{CLASS_NAME_PREFIX}hashtag">#{hashtag}</span>
+              <span class="#{CLASS_NAME_PREFIX}count"></span>
+            </div>
           </div>
-        </div>
-      """
+        """
 
 @__yo_counter.init()

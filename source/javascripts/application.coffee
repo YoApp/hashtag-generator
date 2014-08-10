@@ -12,6 +12,7 @@ $ ->
 
     if hashtag && is_valid
       $('#yo-counter-a-textarea').val(TAG_TEMPLATE.replace(/:hashtag/g, hashtag))
+      $('#sample-hashtag').html(hashtag)
       $('#slider').slideDown()
       $('#error').slideUp()
     else
