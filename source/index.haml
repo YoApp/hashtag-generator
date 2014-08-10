@@ -7,32 +7,45 @@ title: YoCounter
 %form#generator-form
   %h2 Hashtag
   %p YoCounter buttons have a hashtag. Please enter the hashtag you want to count.
-  .form-group
+  .input-group
     %input#hashtag-input.hashtag.form-control{type: 'text', placeholder: 'HASHTAG'}
   #error
   #slider
     %h2 Sample
-    #sample
+    .sample
       %a.yo-counter{href: '#'}
         .__yo-counter-wrapper
           .__yo-counter-icon
           .__yo-counter-content
-            %span.__yo-counter-hashtag#sample-hashtag
+            %span.__yo-counter-hashtag.sample-hashtag
             %span.__yo-counter-count{style: 'display: inline;'} 1,234
     %h2 Codes
-    %p There are 2 codes to paste on your website!
+    %p There are <span id="count-of-codes">2</span> codes to paste on your website!
     %h3 Where you like
     %p Paste HTML code below where you want to embed YoCounter.
     %p
-      %textarea.form-control#yo-counter-a-textarea
-      %a.copy.btn.btn-default{'data-clipboard-target' => 'yo-counter-a-textarea'}= icon('copy', 'Copy')
+      %textarea.form-control#a-textarea
+      %a.copy.btn.btn-default{'data-clipboard-target' => 'a-textarea'}= icon('copy', 'Copy')
     %h3 Before &lt;/body&gt; tag
     %p Paste HTML code below before &lt;/body&gt; tag. Even if you embed multiple YoCounters on your website, paste this code once.
     %p
-      %textarea.form-control#yo-counter-script-textarea
+      %textarea.form-control#script-textarea
         :escaped
           <script type="text/javascript" src="//counter.justyo.co/api/1/buttons.js"></script>
-      %a.copy.btn.btn-default{'data-clipboard-target' => 'yo-counter-script-textarea'}= icon('copy', 'Copy')
+      %a.copy.btn.btn-default{'data-clipboard-target' => 'script-textarea'}= icon('copy', 'Copy')
+    %h3 Customizing Text Color
+    %p If you want to change button's text color, also paste this CSS.
+    .sample
+      %a.yo-counter{href: '#'}
+        .__yo-counter-wrapper
+          .__yo-counter-icon
+          .__yo-counter-content
+            %span.__yo-counter-hashtag.sample-hashtag
+            %span.__yo-counter-count{style: 'display: inline;'} 1,234
+    .input-group
+      %input#text-color-input.color.form-control{type: 'text', placeholder: 'TEXT COLOR', value: '428BCA'}
+      %textarea#css-textarea.form-control
+      %a.copy.btn.btn-default{'data-clipboard-target' => 'css-textarea'}= icon('copy', 'Copy')
 %h2 If you like ...
 %p If you like YoCounter, let us know by sending Yo to #ILOVEYOCOUNTER.
 %p

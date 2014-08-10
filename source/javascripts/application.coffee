@@ -1,4 +1,5 @@
 #= require ZeroClipboard
+#= require jscolor
 
 $ ->
   TAG_TEMPLATE = '<a href="http://justyo.co/h/:hashtag" class="yo-counter" data-hashtag=":hashtag">#:hashtag</a>'
@@ -11,8 +12,8 @@ $ ->
     is_valid = hashtag && !!hashtag.match(/^[A-Z][0-9A-Z]*$/)
 
     if hashtag && is_valid
-      $('#yo-counter-a-textarea').val(TAG_TEMPLATE.replace(/:hashtag/g, hashtag))
-      $('#sample-hashtag').html(hashtag)
+      $('#a-textarea').val(TAG_TEMPLATE.replace(/:hashtag/g, hashtag))
+      $('.sample-hashtag').html(hashtag)
       $('#slider').slideDown()
       $('#error').slideUp()
     else
@@ -23,6 +24,11 @@ $ ->
         $('#error').html('Hashtag has to start with an alphabet!').slideDown()
       else
         $('#error').html('Hashtag can include only alphabets and numbers!').slideDown()
+
+  $('#text-color-input').change ->
+    csstext = "color:##{$(this).val()}!important;"
+    $('.yo-counter .__yo-counter-wrapper .__yo-counter-content *').css({ cssText: csstext + 'display:inline;' })
+    $('#css-textarea').val(".yo-counter *{#{csstext}}")
 
   $('.copy').click ->
     $(this).html('<i class="fa fa-check-circle"></i> Copied!')
