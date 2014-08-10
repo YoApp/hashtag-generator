@@ -33,19 +33,19 @@ title: YoCounter
         :escaped
           <script type="text/javascript" src="//counter.justyo.co/api/1/buttons.js"></script>
       %a.copy.btn.btn-default{'data-clipboard-target' => 'script-textarea'}= icon('copy', 'Copy')
-    %h3 Customizing Text Color
-    %p If you want to change button's text color, also paste this CSS.
-    .sample
-      %a.yo-counter{href: '#'}
-        .__yo-counter-wrapper
-          .__yo-counter-icon
-          .__yo-counter-content
-            %span.__yo-counter-hashtag.sample-hashtag
-            %span.__yo-counter-count{style: 'display: inline;'} 1,234
-    .input-group
-      %input#text-color-input.color.form-control{type: 'text', placeholder: 'TEXT COLOR', value: '428BCA'}
-      %textarea#css-textarea.form-control
-      %a.copy.btn.btn-default{'data-clipboard-target' => 'css-textarea'}= icon('copy', 'Copy')
+    -#%h3 Customizing Text Color
+    -#%p If you want to change button's text color, also paste this CSS.
+    -#.sample
+    -#  %a.yo-counter{href: '#'}
+    -#    .__yo-counter-wrapper
+    -#      .__yo-counter-icon
+    -#      .__yo-counter-content
+    -#        %span.__yo-counter-hashtag.sample-hashtag
+    -#        %span.__yo-counter-count{style: 'display: inline;'} 1,234
+    -#.input-group
+    -#  %input#text-color-input.color.form-control{type: 'text', placeholder: 'TEXT COLOR', value: '428BCA'}
+    -#  %textarea#css-textarea.form-control
+    -#  %a.copy.btn.btn-default{'data-clipboard-target' => 'css-textarea'}= icon('copy', 'Copy')
 %h2 If you like ...
 %p If you like YoCounter, let us know by sending Yo to #ILOVEYOCOUNTER.
 %p
