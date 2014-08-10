@@ -32,6 +32,9 @@ $btn-default-border: #fff;
 // -------------------------------------------------------------------
 // Core styles
 // -------------------------------------------------------------------
+* {
+  font-weight: bold;
+}
 h1, h1 + p {
   text-align: center;
 }
@@ -66,4 +69,9 @@ input.hashtag {
 #error::before {
   content: $fa-var-times-circle' ';
   font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
