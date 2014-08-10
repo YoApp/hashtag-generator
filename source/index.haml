@@ -16,10 +16,12 @@ title: YoCounter
     %h3 Where you like
     %p Paste HTML code below where you want to embed YoCounter.
     %p
+      %button.copy.btn.btn-default{'data-clipboard-target' => 'yo-counter-a-textarea'}= icon('copy', 'Copy')
       %textarea.form-control#yo-counter-a-textarea
     %h3 Before &lt;/body&gt; tag
     %p Paste HTML code below before &lt;/body&gt; tag. Even if you embed multiple YoCounters on your website, paste this code once.
     %p
+      %button.copy.btn.btn-default{'data-clipboard-target' => 'yo-counter-script-textarea'}= icon('copy', 'Copy')
       %textarea.form-control#yo-counter-script-textarea
         :escaped
           <script type="text/javascript" src="//counter.justyo.co/api/1/buttons.js"></script>

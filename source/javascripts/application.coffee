@@ -1,3 +1,5 @@
+#= require ZeroClipboard
+
 $ ->
   TAG_TEMPLATE = '<a href="http://justyo.co/h/:hashtag" class="yo-counter" data-hashtag=":hashtag">#:hashtag</a>'
 
@@ -21,4 +23,12 @@ $ ->
       else
         $('#error').html('Hashtag can include only alphabets and numbers!').slideDown()
 
+  $('.copy').click ->
+    $(this).html('<i class="fa fa-check-circle"></i> Copied!')
+    setTimeout(=>
+      $(this).html('<i class="fa fa-copy"></i> Copy')
+    , 2000)
+
   $('#hashtag-input').focus()
+
+  new ZeroClipboard($('.copy'))
