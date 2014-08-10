@@ -22,9 +22,9 @@ title: YoCounter
     %p
       %textarea.form-control#yo-counter-script-textarea
         :escaped
-          <script type="text/javascript" src="//yocounter.justyo.co/api/1/buttons.js"></script>
+          <script type="text/javascript" src="//counter.justyo.co/api/1/buttons.js"></script>
 %h2 If you like ...
 %p If you like YoCounter, let us know by sending Yo to #ILOVEYOCOUNTER.
 %p
   <a href="http://justyo.co/h/ILOVEYOCOUNTER" class="yo-counter" data-hashtag="ILOVEYOCOUNTER">#ILOVEYOCOUNTER</a>
-= javascript_include_tag 'buttons'
+= javascript_include_tag '/api/1/buttons.js'

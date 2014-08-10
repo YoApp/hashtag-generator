@@ -4,8 +4,9 @@
     %meta{charset: 'utf-8'}
     %meta{name: 'viewport', content: 'initial-scale=1.0,user-scalable=no'}
     %title Yo Counter
+    %link{rel: 'icon', href: '//yoapp.s3.amazonaws.com/yo/favicon.ico'}
     = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Montserrat:700,400'
-    = javascript_include_tag 'https://code.jquery.com/jquery-2.1.1.min.js', 'application'
+    = javascript_include_tag '//code.jquery.com/jquery-2.1.1.min.js', 'application'
   %body
     .container
       = yield

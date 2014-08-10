@@ -59,6 +59,13 @@ FONT_STYLESHEET_ID = '__yo-counter-font'
   include_count_js: (hashtag) ->
     @include_js('http://api.justyo.co/yo_count/?hashtag=' + hashtag + '&jsonp=__yo_counter.callback', '__yo-counter-js-' + hashtag)
 
+  # Returns path to the asset for each environment
+  asset_path: (path) ->
+    if !!location.href.match(/^https?:\/\/localhost[\:\/]/)
+      path
+    else
+      '//counter.justyo.co' + path
+
   # Treats JSONP API return and renders counter to DOM
   callback: (data) ->
     hashtag = data.result.hashtag
@@ -70,8 +77,8 @@ FONT_STYLESHEET_ID = '__yo-counter-font'
 
   init: ->
     # Includes CSS
-    @link_css('https://fonts.googleapis.com/css?family=Montserrat:700,400', FONT_STYLESHEET_ID)
-    @link_css('/stylesheets/buttons.css', STYLESHEET_ID) # TODO fix link for production!
+    @link_css('//fonts.googleapis.com/css?family=Montserrat:700,400', FONT_STYLESHEET_ID)
+    @link_css(@asset_path('/api/1/buttons.css'), STYLESHEET_ID)
 
     for _ in @$('.' + COUNTER_CLASS_NAME)
       # Gets a hashtag
