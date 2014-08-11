@@ -3,6 +3,12 @@
 $ ->
   TAG_TEMPLATE = '<a href="http://justyo.co/h/:hashtag" class="yo-counter" data-hashtag=":hashtag">#:hashtag</a>'
 
+  format_number = (num) ->
+    if !num || isNaN(num)
+      '?'
+    else
+      String(num).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+
   $('#generator-form').submit (event) ->
     event.preventDefault()
 
@@ -13,6 +19,7 @@ $ ->
     if hashtag && is_valid
       $('#a-textarea').val(TAG_TEMPLATE.replace(/:hashtag/g, hashtag))
       $('.sample-hashtag').html(hashtag)
+      $('.sample-count').html(format_number(1000 + Math.floor(Math.random() * 9000)))
       $('#slider').slideDown()
       $('#error').slideUp()
     else
