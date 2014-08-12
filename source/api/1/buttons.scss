@@ -1,0 +1,72 @@
+// Core settings
+$link-class-name: 'yo-counter';
+$class-name-prefix: '__yo-counter-';
+
+// Color settings
+$yo-brand-color: #9B59B6;
+$border-color: darken($yo-brand-color, 5%);
+$text-color: #428bca;
+
+.#{$link-class-name} {
+  // Reset styles
+  * {
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: $text-color;
+    font-family: 'Montserrat', arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  // Frame
+  .#{$class-name-prefix}wrapper {
+    background: #ffffff;
+    border: 1px solid $border-color;
+    display: inline-block;
+    height: 20px;
+    padding: 2px;
+    -webkit-transition: background-color 0.25s ease-in, border-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in, border-color 0.25s ease-in;
+    -ms-transition: background-color 0.25s ease-in, border-color 0.25s ease-in;
+    -o-transition: background-color 0.25s ease-in, border-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in, border-color 0.25s ease-in;
+  }
+  .#{$class-name-prefix}wrapper:hover {
+    background-color: darken(lighten($yo-brand-color, 100%), 5%);
+    border-color: darken($border-color, 10%);
+  }
+
+  // Yo brand icon
+  .#{$class-name-prefix}icon {
+    background: $yo-brand-color;
+    border: 1px solid darken($yo-brand-color, 5%);
+    float: left;
+    height: 14px;
+    width: 14px;
+  }
+
+  // Hashtag and counter
+  .#{$class-name-prefix}content {
+    margin-left: 18px;
+    text-align: center;
+
+    .#{$class-name-prefix}hashtag::before {
+      content: '#';
+    }
+    .#{$class-name-prefix}count {
+      display: none;
+    }
+    .#{$class-name-prefix}count::before {
+      content: ' (';
+    }
+    .#{$class-name-prefix}count::after {
+      content: ')';
+    }
+  }
+}
